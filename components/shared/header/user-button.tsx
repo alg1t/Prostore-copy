@@ -15,6 +15,7 @@ const UserButton = async () => {
   const session = await auth();
 
   if (!session) {
+    // are we logged in?? UI sign-in button if not
     return (
       <Button asChild>
         <Link href="/sign-in">
@@ -23,8 +24,22 @@ const UserButton = async () => {
       </Button>
     );
   }
+  function getInitial(): string | null {
+    if (session?.user?.name) {
+      const nameParts = session.user.name.split(" ");
+      if (nameParts.length >= 2) {
+        const firstInitial = nameParts[0][0];
+        const lastInitial = nameParts[nameParts.length - 1][0];
+        return `${firstInitial.toUpperCase()}${lastInitial.toUpperCase()}`;
+      }
+      return nameParts[0][0]?.toUpperCase() || null; // Handle single-word names
+    }
+    return null; // No name found
+  }
 
-  const firstInitial = session.user?.name?.charAt(0).toUpperCase() ?? "U";
+  const init = getInitial();
+
+  // const firstInitial = session.user?.name?.charAt(0).toUpperCase() ?? "U"; //  UI name initia;
 
   return (
     <div className="flex gap-2 items-center">
@@ -35,7 +50,7 @@ const UserButton = async () => {
               variant="ghost"
               className="relativee w-8 h-8 rounded-full ml-2 flex items-center justify-center bg-gray-200"
             >
-              {firstInitial}
+              {init}
             </Button>
           </div>
         </DropdownMenuTrigger>
@@ -50,13 +65,13 @@ const UserButton = async () => {
               </div>
             </div>
           </DropdownMenuLabel>
-
+          {/* 
           <DropdownMenuItem>
             <Link href="/user/profile" className="w-full">
               User Profile
             </Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
+          </DropdownMenuItem> */}
+          {/* <DropdownMenuItem>
             <Link href="/user/orders" className="w-full">
               Order History
             </Link>
@@ -68,7 +83,7 @@ const UserButton = async () => {
                 Admin
               </Link>
             </DropdownMenuItem>
-          )}
+          )} */}
 
           <DropdownMenuItem className="p-0 mb-1">
             <form action={signOutUser} className="w-full">
