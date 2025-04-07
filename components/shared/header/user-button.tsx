@@ -24,7 +24,8 @@ const UserButton = async () => {
       </Button>
     );
   }
-  function getInitial(): string | null {
+  //my code
+  function getInitial(): string | string {
     if (session?.user?.name) {
       const nameParts = session.user.name.split(" ");
       if (nameParts.length >= 2) {
@@ -32,12 +33,12 @@ const UserButton = async () => {
         const lastInitial = nameParts[nameParts.length - 1][0];
         return `${firstInitial.toUpperCase()}${lastInitial.toUpperCase()}`;
       }
-      return nameParts[0][0]?.toUpperCase() || null; // Handle single-word names
+      return nameParts[0][0]?.toUpperCase() || "U"; // Handle single-word names
     }
-    return null; // No name found
+    return "U"; // No name found
   }
 
-  const init = getInitial();
+  const initials = getInitial();
 
   // const firstInitial = session.user?.name?.charAt(0).toUpperCase() ?? "U"; //  UI name initia;
 
@@ -50,7 +51,7 @@ const UserButton = async () => {
               variant="ghost"
               className="relativee w-8 h-8 rounded-full ml-2 flex items-center justify-center bg-gray-200"
             >
-              {init}
+              {initials}
             </Button>
           </div>
         </DropdownMenuTrigger>
