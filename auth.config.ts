@@ -1,6 +1,6 @@
 import type { NextAuthConfig } from "next-auth";
 import { NextResponse } from "next/server";
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export const authConfig = {
   providers: [], // Required by NextAuthConfig type
   callbacks: {
