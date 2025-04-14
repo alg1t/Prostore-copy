@@ -216,7 +216,7 @@ export async function getMyCart() {
   if (!cart) return undefined;
   return convertToPlainObject({
     ...cart,
-    items: cart.items as cartItem[],
+    items: cart.items as CartItem[],
     itemsPrice: cart.itemsPrice.toString(),
     totalPrice: cart.totalPrice.toString(),
     shippingPrice: cart.shippingPrice.toString(),
