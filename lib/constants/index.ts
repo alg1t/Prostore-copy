@@ -19,19 +19,19 @@ export const signUpDefaultValues = {
   confirmPassword: "",
 };
 
-// export const shippingAddressDefaultValues = {
-//   fullName: "",
-//   streetAddress: "",
-//   city: "",
-//   postalCode: "",
-//   country: "",
-// };
+export const shippingAddressDefaultValues = {
+  fullName: "Alf Roberts",
+  streetAddress: "123 High St",
+  city: "Anytown",
+  postalCode: "123456",
+  country: "United Kingdom",
+};
 
-// export const PAYMENT_METHODS = process.env.PAYMENT_METHODS
-//   ? process.env.PAYMENT_METHODS.split(", ")
-//   : ["PayPal", "Stripe", "CashOnDelivery"];
-// export const DEFAULT_PAYMENT_METHOD =
-//   process.env.DEFAULT_PAYMENT_METHOD || "PayPal";
+export const PAYMENT_METHODS = process.env.PAYMENT_METHODS
+  ? process.env.PAYMENT_METHODS.split(", ")
+  : ["PayPal", "Stripe", "CashOnDelivery"];
+export const DEFAULT_PAYMENT_METHOD =
+  process.env.DEFAULT_PAYMENT_METHOD || "PayPal";
 
 // export const PAGE_SIZE = Number(process.env.PAGE_SIZE) || 12;
 
