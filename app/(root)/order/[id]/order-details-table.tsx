@@ -41,10 +41,10 @@ const OrderDetailsTable = ({
     taxPrice,
     totalPrice,
     paymentMethod,
-    isDelivered,
+    // isDelivered,
     isPaid,
     paidAt,
-    deliveredAt,
+    // deliveredAt,
   } = order;
 
   const PrintLoadingState = () => {
@@ -163,13 +163,13 @@ const OrderDetailsTable = ({
                 {shippingAddress.streetAddress}, {shippingAddress.city}
                 {shippingAddress.postalCode}, {shippingAddress.country}
               </p>
-              {isDelivered ? (
+              {/* {isDelivered ? (
                 <Badge variant="secondary">
                   Delivered at {formatDateTime(deliveredAt!).dateTime}
                 </Badge>
               ) : (
                 <Badge variant="destructive">Not Delivered</Badge>
-              )}
+              )} */}
             </CardContent>
           </Card>
           <Card>
