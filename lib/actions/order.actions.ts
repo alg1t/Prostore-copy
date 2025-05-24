@@ -12,7 +12,7 @@ import { CartItem, PaymentResult } from "@/types";
 import { paypal } from "../paypal";
 import { revalidatePath } from "next/cache";
 import { PAGE_SIZE } from "../constants";
-import { Prisma } from "@prisma/client";
+// import { Prisma } from "@prisma/client";
 // import { sendPurchaseReceipt } from '@/email';
 
 // // Create order and create the order items
