@@ -25,12 +25,17 @@ import {
   approvePayPalOrder,
 } from "@/lib/actions/order.actions";
 
+// // const OrderDetailsTable = ({
+// //   order,
+// //   paypalClientId,
+// // }: {
+// //   order: Order;
+// //   paypalClientId: string;
+// })
 const OrderDetailsTable = ({
   order,
-  paypalClientId,
 }: {
-  order: Order;
-  paypalClientId: string;
+  order: Omit<Order, "paymentResult">;
 }) => {
   const {
     id,
