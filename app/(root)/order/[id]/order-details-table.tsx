@@ -47,10 +47,10 @@ const OrderDetailsTable = ({
       taxPrice,
       totalPrice,
       paymentMethod,
-      // isDelivered,
+      isDelivered,
       isPaid,
       paidAt,
-      // deliveredAt,
+      deliveredAt,
     } = order;
 
     const PrintLoadingState = () => {
