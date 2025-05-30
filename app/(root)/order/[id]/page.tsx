@@ -21,14 +21,14 @@ const OrderDetailsPage = async (props: {
   const order = await getOrderById(id);
   if (!order) notFound();
 
-  const session = await auth();
+  // const session = await auth();
 
   // Redirect the user if they don't own the order
   // if (order.userId !== session?.user.id && session?.user.role !== "admin") {
   //   return redirect("/unauthorized");
   // }
 
-  const client_secret = null;
+  // const client_secret = null;
 
   // Check if is not paid and using stripe
   // if (order.paymentMethod === 'Stripe' && !order.isPaid) {
