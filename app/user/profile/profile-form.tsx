@@ -28,17 +28,9 @@ const ProfileForm = () => {
     },
   });
 
-  // const { toast } = useToast();
-
   const onSubmit = async (values: z.infer<typeof updateProfileSchema>) => {
     const res = await updateProfile(values);
 
-    // if (!res.success) {
-    //   return toast({
-    //     variant: "destructive",
-    //     description: res.message,
-    //   });
-    //
     if (!res.success) {
       toast.error(res.message);
       return;
@@ -54,9 +46,8 @@ const ProfileForm = () => {
 
     await update(newSession);
 
-    toast({
-      description: res.message,
-    });
+    toast.success(res.message);
+    return;
   };
 
   return (

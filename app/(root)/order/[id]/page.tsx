@@ -1,10 +1,10 @@
 import { Metadata } from "next";
 import { getOrderById } from "@/lib/actions/order.actions";
-// import { notFound, redirect } from "next/navigation";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
+// import { notFound } from "next/navigation";
 import OrderDetailsTable from "./order-details-table";
 import { ShippingAddress } from "@/types";
-// import { auth } from "@/auth";
+import { auth } from "@/auth";
 // import Stripe from 'stripe';
 
 export const metadata: Metadata = {
@@ -21,9 +21,9 @@ const OrderDetailsPage = async (props: {
   const order = await getOrderById(id);
   if (!order) notFound();
 
-  // const session = await auth();
+  const session = await auth();
 
-  // Redirect the user if they don't own the order
+  //Redirect the user if they don't own the order
   // if (order.userId !== session?.user.id && session?.user.role !== "admin") {
   //   return redirect("/unauthorized");
   // }
