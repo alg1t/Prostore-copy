@@ -335,61 +335,61 @@ export async function getOrderSummary() {
   };
 }
 
-// // Get all orders
-// export async function getAllOrders({
-//   limit = PAGE_SIZE,
-//   page,
-//   query,
-// }: {
-//   limit?: number;
-//   page: number;
-//   query: string;
-// }) {
-//   const queryFilter: Prisma.OrderWhereInput =
-//     query && query !== 'all'
-//       ? {
-//           user: {
-//             name: {
-//               contains: query,
-//               mode: 'insensitive',
-//             } as Prisma.StringFilter,
-//           },
-//         }
-//       : {};
+// Get all orders
+export async function getAllOrders({
+  limit = PAGE_SIZE,
+  page,
+  query,
+}: {
+  limit?: number;
+  page: number;
+  query: string;
+}) {
+  const queryFilter: Prisma.OrderWhereInput =
+    query && query !== "all"
+      ? {
+          user: {
+            name: {
+              contains: query,
+              mode: "insensitive",
+            } as Prisma.StringFilter,
+          },
+        }
+      : {};
 
-//   const data = await prisma.order.findMany({
-//     where: {
-//       ...queryFilter,
-//     },
-//     orderBy: { createdAt: 'desc' },
-//     take: limit,
-//     skip: (page - 1) * limit,
-//     include: { user: { select: { name: true } } },
-//   });
+  const data = await prisma.order.findMany({
+    where: {
+      ...queryFilter,
+    },
+    orderBy: { createdAt: "desc" },
+    take: limit,
+    skip: (page - 1) * limit,
+    include: { user: { select: { name: true } } },
+  });
 
-//   const dataCount = await prisma.order.count();
+  const dataCount = await prisma.order.count();
 
-//   return {
-//     data,
-//     totalPages: Math.ceil(dataCount / limit),
-//   };
-// }
+  return {
+    data,
+    totalPages: Math.ceil(dataCount / limit),
+  };
+}
 
-// // Delete an order
-// export async function deleteOrder(id: string) {
-//   try {
-//     await prisma.order.delete({ where: { id } });
+// Delete an order
+export async function deleteOrder(id: string) {
+  try {
+    await prisma.order.delete({ where: { id } });
 
-//     revalidatePath('/admin/orders');
+    revalidatePath('/admin/orders');
 
-//     return {
-//       success: true,
-//       message: 'Order deleted successfully',
-//     };
-//   } catch (error) {
-//     return { success: false, message: formatError(error) };
-//   }
-// }
+    return {
+      success: true,
+      message: 'Order deleted successfully',
+    };
+  } catch (error) {
+    return { success: false, message: formatError(error) };
+  }
+}
 
 // // Update COD order to paid
 // export async function updateOrderToPaidCOD(orderId: string) {

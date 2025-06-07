@@ -14,13 +14,14 @@ import { auth } from "@/auth";
 import { Metadata } from "next";
 import Link from "next/link";
 import Charts from "./charts";
-// import { requireAdmin } from "@/lib/auth-guard";
+import { requireAdmin } from "@/lib/auth-guard";
 
 export const metadata: Metadata = {
   title: "Admin Dashboard",
 };
 
 const AdminOverviewPage = async () => {
+  await requireAdmin();
   const session = await auth();
   if (session?.user?.role !== "admin") {
     throw new Error("User is not autherised");
@@ -28,7 +29,7 @@ const AdminOverviewPage = async () => {
   // await requireAdmin();
 
   const summary = await getOrderSummary();
-  console.log(summary);
+  // console.log(summary);
 
   return (
     <div className="space-y-2">
