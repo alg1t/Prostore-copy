@@ -339,28 +339,28 @@ export async function getOrderSummary() {
 export async function getAllOrders({
   limit = PAGE_SIZE,
   page,
-  query,
-}: {
+}: // query,
+{
   limit?: number;
   page: number;
-  query: string;
+  // query: string;
 }) {
-  const queryFilter: Prisma.OrderWhereInput =
-    query && query !== "all"
-      ? {
-          user: {
-            name: {
-              contains: query,
-              mode: "insensitive",
-            } as Prisma.StringFilter,
-          },
-        }
-      : {};
+  // const queryFilter: Prisma.OrderWhereInput =
+  //   query && query !== "all"
+  //     ? {
+  //         user: {
+  //           name: {
+  //             contains: query,
+  //             mode: "insensitive",
+  //           } as Prisma.StringFilter,
+  //         },
+  //       }
+  //     : {};
 
   const data = await prisma.order.findMany({
-    where: {
-      ...queryFilter,
-    },
+    // where: {
+    //   ...queryFilter,
+    // },
     orderBy: { createdAt: "desc" },
     take: limit,
     skip: (page - 1) * limit,
@@ -380,11 +380,11 @@ export async function deleteOrder(id: string) {
   try {
     await prisma.order.delete({ where: { id } });
 
-    revalidatePath('/admin/orders');
+    revalidatePath("/admin/orders");
 
     return {
       success: true,
-      message: 'Order deleted successfully',
+      message: "Order deleted successfully",
     };
   } catch (error) {
     return { success: false, message: formatError(error) };
